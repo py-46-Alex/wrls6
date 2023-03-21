@@ -43,13 +43,12 @@ class CreateAdvUser(pydantic.BaseModel):
         return value
 #
 def validate(input_data: dict, validation_model: Type[CreateAdvUser]):
-    # засунуто в пост чтобы разрешало постить только тем у кого указан ник и
-    # гоолва обьявления
+    # 
     try:
         model_item = validation_model(**input_data)
-        return model_item.dict(exclude_none=True)  #если пришло нан то просто ничего не делай . ненадо писать нан так же.
+        return model_item.dict(exclude_none=True)  #
     except pydantic.ValidationError as err:
-        raise HttpError(400, err.errors())  #делает описание ошибки атвтоматичси
+        raise HttpError(400, err.errors())  #
 #
 class Useradven(Base):
 
